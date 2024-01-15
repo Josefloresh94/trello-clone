@@ -2,18 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import { NavbarComponent } from "../../components/navbar/navbar.component";
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClient } from '@angular/common/http';
-import { ScrollingModule } from '@angular/cdk/scrolling';
+import {CdkTableModule} from '@angular/cdk/table'; 
 
 import { Product } from '../../models/product.model';
 
 @Component({
-    selector: 'app-scroll',
+    selector: 'app-table',
     standalone: true,
-    templateUrl: './scroll.component.html',
-    imports: [NavbarComponent, HttpClientModule, ScrollingModule]
+    templateUrl: './table.component.html',
+    imports: [NavbarComponent, HttpClientModule, CdkTableModule]
 })
-export class ScrollComponent implements OnInit {
+export class TableComponent implements OnInit {
   products: Product[] = [];
+  columns: string[] = ['#No', 'Name', 'price', 'cover'];
 
   constructor(
     private http: HttpClient
