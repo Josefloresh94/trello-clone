@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { DragDropModule } from '@angular/cdk/drag-drop'; 
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { NavbarComponent } from "../../components/navbar/navbar.component";
+import { Dialog } from '@angular/cdk/dialog';
+import { TodoDialogComponent } from '../../components/todo-dialog/todo-dialog.component';
+
 
 import { ToDo, Column } from '../../models/todo.model';
 
@@ -9,7 +12,7 @@ import { ToDo, Column } from '../../models/todo.model';
     selector: 'app-board',
     standalone: true,
     templateUrl: './board.component.html',
-    imports: [NavbarComponent, NavbarComponent, DragDropModule],
+    imports: [NavbarComponent, NavbarComponent, DragDropModule, TodoDialogComponent],
     styles: [
       `
         /* Animate items as they're being sorted. */
@@ -64,6 +67,8 @@ export class BoardComponent {
   doing: ToDo[] = [];
   done: ToDo[] = [];
 
+  constructor (private dialog: Dialog) {}
+
   drop(event: CdkDragDrop<any[]>) {
     if (event.previousContainer === event.container) {
       moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
@@ -81,6 +86,13 @@ export class BoardComponent {
     this.columns.push({
       title: 'New Column',
       todos: [],
+    });
+  }
+
+  openDialog() {
+    this.dialog.open(TodoDialogComponent, {
+      minWidth: '300px',
+      maxWidth : '50%',
     });
   }
 }
