@@ -1,15 +1,38 @@
 import { Routes } from '@angular/router';
 
-import { LoginComponent } from './pages/login/login.component';
-import { BoardsComponent } from './pages/boards/boards.component';
-import { BoardComponent } from './pages/board/board.component';
-import { ScrollComponent } from './pages/scroll/scroll.component';
-import { TableComponent } from './pages/table/table.component';
+import { LoginComponent } from './modules/auth/pages/login/login.component';
+import { ForgotPasswordComponent } from './modules/auth/pages/forgot-password/forgot-password.component'; 
+import { RegisterComponent } from './modules/auth/pages/register/register.component'; 
+import { RecoveryComponent } from './modules/auth/pages/recovery/recovery.component'; 
+import { BoardComponent } from './modules/boards/pages/board/board.component';
+import { BoardsComponent } from './modules/boards/pages/boards/boards.component';
+import { LayoutComponent } from './modules/layout/components/layout/layout.component';
 
 export const routes: Routes = [
     {
+        path: '',
+        redirectTo: 'login',
+        pathMatch: 'full'
+    },
+    {
         path: 'login',
-        component: LoginComponent
+        component: LoginComponent,
+        title: 'Login'
+    },
+    {
+        path: 'forgot-password',
+        component: ForgotPasswordComponent,
+        title: 'Forgot Password'
+    },
+    {
+        path: 'register',
+        component: RegisterComponent,
+        title: 'Register'
+    },
+    {
+        path: 'recovery',
+        component: RecoveryComponent,
+        title: 'Recovery'
     },
     {
         path: 'boards',
@@ -19,12 +42,4 @@ export const routes: Routes = [
         path: 'board',
         component: BoardComponent
     },
-    {
-        path: 'scroll',
-        component: ScrollComponent
-    },
-    {
-        path: 'table',
-        component: TableComponent
-    }
 ];
