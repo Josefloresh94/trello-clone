@@ -12,7 +12,7 @@ import {CdkAccordionModule} from '@angular/cdk/accordion';
     imports: [FontAwesomeModule, CdkAccordionModule, NgClass]
 })
 
-export class BoardsComponent {
+export default class BoardsComponent {
     faTrello = faTrello;
     faBox = faBox;
     faWaveSquare = faWaveSquare;

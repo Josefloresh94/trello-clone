@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
   imports: [],
   templateUrl: './profile.component.html'
 })
-export class ProfileComponent {
+export default class ProfileComponent {
 
 }

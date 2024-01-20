@@ -9,7 +9,7 @@ import { NgClass } from '@angular/common';
   imports: [ NgClass, CdkTableModule],
   templateUrl: './users-table.component.html'
 })
-export class UsersTableComponent {
+export default class UsersTableComponent {
   dataSource = new DataSourceUser();
   columns: string[] = ['id', 'avatar', 'name', 'email'];
 

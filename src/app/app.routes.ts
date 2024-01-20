@@ -4,8 +4,6 @@ import { LoginComponent } from './modules/auth/pages/login/login.component';
 import { ForgotPasswordComponent } from './modules/auth/pages/forgot-password/forgot-password.component'; 
 import { RegisterComponent } from './modules/auth/pages/register/register.component'; 
 import { RecoveryComponent } from './modules/auth/pages/recovery/recovery.component'; 
-import { BoardComponent } from './modules/boards/pages/board/board.component';
-import { BoardsComponent } from './modules/boards/pages/boards/boards.component';
 import { LayoutComponent } from './modules/layout/components/layout/layout.component';
 
 export const routes: Routes = [
@@ -35,11 +33,31 @@ export const routes: Routes = [
         title: 'Recovery'
     },
     {
-        path: 'boards',
-        component: BoardsComponent
-    },
-    {
-        path: 'board',
-        component: BoardComponent
+        path: '',
+        component: LayoutComponent,
+        children: [
+            {
+                path: '',
+                redirectTo: 'boards',
+                pathMatch: 'full'
+            },
+            {
+                path: 'boards',
+                loadComponent:() => import('./modules/boards/pages/boards/boards.component')
+            },
+            {
+                path: 'board',
+                loadComponent:() => import('./modules/boards/pages/board/board.component')
+            },
+            {
+                path: 'profile',
+                loadComponent:() => import('./modules/profile/pages/profile/profile.component')
+            },
+            {
+                path: 'users',
+                loadComponent:() => import('./modules/users/pages/users-table/users-table.component')
+            },
+
+        ]
     },
 ];

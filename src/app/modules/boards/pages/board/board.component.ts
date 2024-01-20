@@ -27,7 +27,7 @@ import { ButtonComponent } from "../../../shared/components/button/button.compon
     ],
     imports: [ DragDropModule, TodoDialogComponent, ButtonComponent]
 })
-export class BoardComponent {
+export default class BoardComponent {
 
   columns: Column[] = [
     {
