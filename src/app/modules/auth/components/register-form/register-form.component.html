@@ -8,11 +8,11 @@
                 type="text"
                 name="name"
                 class="w-full rounded bg-gray-100 border-gray-300 border-2"
-            />
+                />
         </div>
-        @if ("form.controls.name.touched && form.controls.name.invalid") {
+        @if (form.controls.name.touched && form.controls.name.invalid) {
             <div>
-                @if ("form.controls.name.hasError('required')") {
+                @if (form.controls.name.hasError('required')) {
                     <p class="font-medium text-red-500 text-xs mt-1 ml-1">
                         This field is mandatory
                     </p>
@@ -29,16 +29,16 @@
                 type="email"
                 name="email"
                 class="w-full rounded bg-gray-100 border-gray-300 border-2"
-            />
+                />
         </div>
-        @if ("form.controls.email.touched && form.controls.email.invalid") {
+        @if (form.controls.email.touched && form.controls.email.invalid) {
             <div>
-                @if ("form.controls.email.hasError('required')") {
+                @if (form.controls.email.hasError('required')) {
                     <p class="font-medium text-red-500 text-xs mt-1 ml-1">
                         This field is mandatory
                     </p>
                 }
-                @if ("form.controls.email.hasError('email')") {
+                @if (form.controls.email.hasError('email')) {
                     <p class="font-medium text-red-500 text-xs mt-1 ml-1">
                         This field should be a email
                     </p>
@@ -53,25 +53,25 @@
                 placeholder="Enter password"
                 [type]="showPassword ? 'text' : 'password'"
                 class="w-full rounded bg-gray-100 border-gray-300 border-2"
-            />
+                />
             <button
                 type="button"
                 class="p-2 absolute right-2"
                 (click)="showPassword = !showPassword"
-            >
+                >
                 <fa-icon [icon]="showPassword ? faEye : faEyeSlash"></fa-icon>
             </button>
         </div>
-        @if ("form.controls.password.touched && form.controls.password.invalid") {
+        @if (form.controls.password.touched && form.controls.password.invalid) {
             <div>
-                @if ("form.controls.password.hasError('required')") {
+                @if (form.controls.password.hasError('required')) {
                     <p class="font-medium text-red-500 text-xs mt-1 ml-1">
                         This field is mandatory
                     </p>
                 }
-                @if ("form.controls.password.hasError('minlength')") {
+                @if (form.controls.password.hasError('minlength')) {
                     <p class="font-medium text-red-500 text-xs mt-1 ml-1">
-                        This field should be greater than 6 characters
+                        This field should be greater than 8 characters
                     </p>
                 }
             </div>
@@ -82,18 +82,28 @@
             <input
                 formControlName="confirmPassword"
                 placeholder="Confirm password"
-                type="password"
+                [type]="showConfirmPassword ? 'text' : 'password'"
                 class="w-full rounded bg-gray-100 border-gray-300 border-2"
-            />
+                />
+            <button
+                type="button"
+                class="p-2 absolute right-2"
+                (click)="showConfirmPassword = !showConfirmPassword"
+                >
+                <fa-icon [icon]="showPassword ? faEye : faEyeSlash"></fa-icon>
+            </button>
         </div>
-        @if ("form.controls.confirmPassword.touched && form.controls.confirmPassword.invalid") {
+        @if (
+            form.controls.confirmPassword.touched &&
+            form.controls.confirmPassword.invalid
+        ) {
             <div>
-                @if ("form.controls.confirmPassword.hasError('required')") {
+                @if (form.controls.confirmPassword.hasError('required')) {
                     <p class="font-medium text-red-500 text-xs mt-1 ml-1">
                         This field is mandatory
                     </p>
                 }
-                @if ("form.controls.confirmPassword.hasError('minlength')") {
+                @if (form.controls.confirmPassword.hasError('minlength')) {
                     <p class="font-medium text-red-500 text-xs mt-1 ml-1">
                         This field should be greater than 6 characters
                     </p>
@@ -101,10 +111,12 @@
             </div>
         }
     </div>
-    @if ("form.controls.confirmPassword.touched") {
+    @if (form.controls.confirmPassword.touched) {
         <div>
-            @if ("form.hasError('mismatch')") {
-                <p class="font-medium text-red-500 text-xs mt-1 ml-1">
+            @if (form.hasError('mismatch')) {
+                <p
+                    class="font-medium text-red-500 text-xs mt-1 ml-1"
+                >
                     The password are not the same
                 </p>
             }
