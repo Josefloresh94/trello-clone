@@ -48,16 +48,13 @@ export class RegisterFormComponent {
     if (this.form.valid) {
       this.status = 'loading';
       const { name, email, password } = this.form.getRawValue();
-      this.authService.register(name, email, password)
+      this.authService.registerAndLogin(name, email, password)
         .subscribe({
           next: () => {
             this.status = 'success';
-            this.router.navigate(['/login']);
+            this.router.navigate(['/app']);
           },
           error: (error) => {
-            // if(error.error.code === 'SQLITE_CONSTRAINT_UNIQUE'){
-            //   this.message = 'This user already exists. Do you want to Login?';
-            // }
             this.status = 'failed';
           }
         })
