@@ -6,11 +6,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faPen, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
+
+import { AuthService } from '@services/auth.service';
+import { RequestStatus } from '@models/request-status.model';
+
 @Component({
     selector: 'app-login-form',
     standalone: true,
     templateUrl: './login-form.component.html',
-    imports: [ButtonComponent,ReactiveFormsModule,FontAwesomeModule]
+    imports: [ButtonComponent, ReactiveFormsModule, FontAwesomeModule]
 })
 export class LoginFormComponent {
   form = this.formBuilder.nonNullable.group({
@@ -21,18 +25,28 @@ export class LoginFormComponent {
   faEye = faEye;
   faEyeSlash = faEyeSlash;
   showPassword = false;
-  status: string = 'init';
+  status: RequestStatus = 'init';
 
   constructor(
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) { }
 
   doLogin() {
     if (this.form.valid) {
       this.status = 'loading';
       const { email, password } = this.form.getRawValue();
-      // TODO
+      this.authService.login(email, password)
+        .subscribe({
+          next: () => {
+            this.status = 'success';
+            this.router.navigate(['/app']);
+          },
+          error: () => {
+            this.status = 'failed';
+          }
+        });
     } else {
       this.form.markAllAsTouched();
     }

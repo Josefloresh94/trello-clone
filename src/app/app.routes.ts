@@ -37,7 +37,7 @@ export const routes: Routes = [
         component: LayoutComponent,
         children: [
             {
-                path: '',
+                path: 'app',
                 redirectTo: 'boards',
                 pathMatch: 'full'
             },
