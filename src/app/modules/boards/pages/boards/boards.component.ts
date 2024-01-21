@@ -4,12 +4,13 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faBox, faWaveSquare, faClock, faAngleUp, faAngleDown, faHeart, faBorderAll, faUsers, faGear } from '@fortawesome/free-solid-svg-icons';
 import { faTrello } from '@fortawesome/free-brands-svg-icons';
 import {CdkAccordionModule} from '@angular/cdk/accordion';
+import { RouterLinkWithHref } from '@angular/router';
 
 @Component({
     selector: 'app-boards',
     standalone: true,
     templateUrl: './boards.component.html',
-    imports: [FontAwesomeModule, CdkAccordionModule, NgClass]
+    imports: [FontAwesomeModule, CdkAccordionModule, NgClass, RouterLinkWithHref]
 })
 
 export default class BoardsComponent {
