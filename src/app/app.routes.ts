@@ -5,6 +5,7 @@ import { ForgotPasswordComponent } from './modules/auth/pages/forgot-password/fo
 import { RegisterComponent } from './modules/auth/pages/register/register.component'; 
 import { RecoveryComponent } from './modules/auth/pages/recovery/recovery.component'; 
 import { LayoutComponent } from './modules/layout/components/layout/layout.component';
+import { authGuard } from '@guards/auth.guard';
 
 export const routes: Routes = [
     {
@@ -35,11 +36,12 @@ export const routes: Routes = [
     {
         path: '',
         component: LayoutComponent,
+        canActivate: [authGuard],
         children: [
             {
                 path: 'app',
                 redirectTo: 'boards',
-                pathMatch: 'full'
+                pathMatch: 'full',
             },
             {
                 path: 'boards',
