@@ -1,41 +1,40 @@
 import { Routes } from '@angular/router';
 
-import { LoginComponent } from './modules/auth/pages/login/login.component';
-import { ForgotPasswordComponent } from './modules/auth/pages/forgot-password/forgot-password.component'; 
-import { RegisterComponent } from './modules/auth/pages/register/register.component'; 
-import { RecoveryComponent } from './modules/auth/pages/recovery/recovery.component'; 
-import { LayoutComponent } from './modules/layout/components/layout/layout.component';
 import { authGuard } from '@guards/auth.guard';
+import { redirectGuard } from '@guards/redirect.guard';
 
 export const routes: Routes = [
     {
         path: '',
-        redirectTo: 'login',
-        pathMatch: 'full'
+        // redirectTo: 'login',
+        // pathMatch: 'full',
+        canActivate: [ redirectGuard ],
+        children: [
+            {
+                path: 'login',
+                loadComponent:() => import('./modules/auth/pages/login/login.component'),
+                title: 'Login'
+            },
+            {
+                path: 'forgot-password',
+                loadComponent:() => import('./modules/auth/pages/forgot-password/forgot-password.component'),
+                title: 'Forgot Password'
+            },
+            {
+                path: 'register',
+                loadComponent:() => import('./modules/auth/pages/register/register.component'),
+                title: 'Register'
+            },
+            {
+                path: 'recovery',
+                loadComponent:() => import('./modules/auth/pages/recovery/recovery.component'),
+                title: 'Recovery'
+            },
+        ]
     },
     {
-        path: 'login',
-        component: LoginComponent,
-        title: 'Login'
-    },
-    {
-        path: 'forgot-password',
-        component: ForgotPasswordComponent,
-        title: 'Forgot Password'
-    },
-    {
-        path: 'register',
-        component: RegisterComponent,
-        title: 'Register'
-    },
-    {
-        path: 'recovery',
-        component: RecoveryComponent,
-        title: 'Recovery'
-    },
-    {
-        path: '',
-        component: LayoutComponent,
+        path: 'app',
+        loadComponent:() => import('./modules/layout/components/layout/layout.component'),
         canActivate: [authGuard],
         children: [
             {

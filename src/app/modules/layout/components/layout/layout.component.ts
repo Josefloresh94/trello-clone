@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavbarComponent } from "../navbar/navbar.component";
 
 import { RouterOutlet } from '@angular/router';
+import { AuthService } from '@services/auth.service';
 
 @Component({
     selector: 'app-layout',
@@ -13,6 +14,12 @@ import { RouterOutlet } from '@angular/router';
     ],
     template: '<router-outlet>'
 })
-export class LayoutComponent {
+export default class LayoutComponent implements OnInit {
+    constructor(
+        private authService: AuthService
+    ){}
 
+    ngOnInit(){
+        this.authService.getProfile().subscribe();
+    }
 }

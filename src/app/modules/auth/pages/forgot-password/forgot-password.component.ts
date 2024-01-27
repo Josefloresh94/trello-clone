@@ -11,6 +11,6 @@ import { RouterLinkWithHref } from '@angular/router';
     templateUrl: './forgot-password.component.html',
     imports: [BackgroundComponent, HeaderComponent, ForgotPasswordFormComponent, FooterComponent, RouterLinkWithHref]
 })
-export class ForgotPasswordComponent {
+export default class ForgotPasswordComponent {
 
 }

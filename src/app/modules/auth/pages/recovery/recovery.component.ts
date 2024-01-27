@@ -11,6 +11,6 @@ import { RouterLinkWithHref } from '@angular/router';
     templateUrl: './recovery.component.html',
     imports: [FooterComponent, RecoveryFormComponent, HeaderComponent, BackgroundComponent, RouterLinkWithHref]
 })
-export class RecoveryComponent {
+export default class RecoveryComponent {
 
 }

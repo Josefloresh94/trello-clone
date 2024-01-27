@@ -11,6 +11,6 @@ import { RouterLinkWithHref } from '@angular/router';
     templateUrl: './login.component.html',
     imports: [FooterComponent, LoginFormComponent, HeaderComponent, BackgroundComponent, RouterLinkWithHref]
 })
-export class LoginComponent {
+export default class LoginComponent {
 
 }
